@@ -1,0 +1,134 @@
+﻿@page
+@model RecruitCatPhant2.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<style>
+    .text-center {
+        text-align: justify;
+    }
+    .center-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-row {
+        margin-bottom: 12px;
+    }
+    .form-row label {
+        display: inline-block;
+        width: 120px;
+    }
+    .form-row input{
+        width: 250px;
+    }
+    ul {
+        text-align: left;
+    }
+</style>
+
+<h1 class="text-center">CINCINNATI RECRUITING COMPANY</h1>
+
+<img src="https://d2vbr83hnyiux1.cloudfront.net/image/975050285728/image_ldhjbscf356dteheeknoro0c1a/-FWEBP-Ro:5,w:1920,h:1440,n:default" class="center-image" alt="Cincinnati Recruiting Company" width="600" height="500" />
+
+<p class="text-center">2906 Woodside Drive, Cincinnati, OH 45221</p>
+<p class="text-center">(123) 456-7890</p>
+<p class="text-center">info@cincinnaticonsulting.com</p>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 d-flex justify-content-center">
+        <div class="text-start">
+            <h2 class="text-center">What We Offer?</h2>
+            <ul>
+                <li>Full-cycle recruiting for mid to senior-level roles.</li>
+                <li>Contract and temporary staffing solutions.</li>
+                <li>Executive search and leadership placement</li>
+                <li>Campus and early-career talent programs.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-center">
+        <div class="text-start">
+            <h2 class="text-center">Industries We Specialize In</h2>
+            <ul>
+                <li>Information Technology and Software Development</li>
+                <li>Healthcare Administration and Clinical Support</li>
+                <li>Financial Services and Accounting</li>
+                <li>Manufacturing and Supply Chain</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr />
+
+<h2 class="text-center">Testimonials</h2>
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            "Cincinnati Recruiting Company helped us fill three critical engineering roles in under a month. Their team understood our culture and only sent candidates who were a great fit."
+            <br />
+            <strong>- Sarah Mitchell, HR Director, Queen City Tech Solutions</strong>
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        <p>
+            "As a candidate, I felt supported at every step. They walked me throughh interview prep, negotiated my offer, and checked in after I started. I'd recommend them to anyone looking for their next role."
+            <br />
+            <strong>- Daniel Reyes, Senior Business Analyst</strong>
+        </p>
+    </div>
+</div>
+<hr />
+
+<h2 class="text-center">How To Apply</h2>
+<p>Our application process is completely web-based and designed to be simple and transparent:</p>
+<ol>
+    <li>Browse our open positions on the <strong>Careers</strong> page.</li>
+    <li>Submit your resume and basic information through our secure online form.</li>
+    <li>Complete a short skills and preferences questionnaire.</li>
+    <li>Participate in a virtual screening call with one of our recruiters.</li>
+    <li>We coordinate interviews directly with hiring managers and keep you updated by email.</li>
+</ol>
+
+<p>
+    Once you apply, you'll receive a confirmation email within minutes. Our team reviews every application and typically responds within 3-5 business days. IF we don't have the perfect role right now, we'll keep your profile in our talent network and reach out when a matching opportunity opens."
+</p>
+<hr />
+
+<h2 class="text-center">Join Our Team!</h2>
+<p>
+    We're always looking for passionate recruiters, sourcers, and coordinators who care about connecting people with meaningful work. Visit the <strong><a href="https://localhost:7227/OurTeam">Our Team</a></strong> page to learn more about the people behind Cincinnati Consulting Company and see if our culture is a fit for you.
+</p>
+<hr />
+
+<h2 class="text-center">Questions?</h2>
+<p>
+    Leave us a message if you have any questions about our services, the application process, or how we can help your organization find top talent. Our team will respond within 24 hours.
+</p>
+<form action="Questions" method="get">
+    <div class="form-row">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+    </div>
+    <div class="form-row">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" />
+    </div>
+    <div class="form-row">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" />
+    </div>
+    <div class="form-row">
+        <label for="question">Question:</label>
+        <input type="text" id="question" name="question" />
+    </div>
+    <p>How would you like to be contacted?</p>
+    <blockquote><input type="checkbox" name="Call" /> Call</blockquote>
+    <blockquote><input type="checkbox" name="Text" /> Text</blockquote>
+    <blockquote><input type="checkbox" name="Email" /> Email</blockquote>
+    <input type="submit" value="Submit" />
+</form>
+<br />
