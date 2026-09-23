@@ -1,0 +1,16 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+{
+  "ConnectionStrings": {
+    "RecruitCatPhant2Context": "Server=(localdb)\\mssqllocaldb;Database=RecruitCatPhant2;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
+

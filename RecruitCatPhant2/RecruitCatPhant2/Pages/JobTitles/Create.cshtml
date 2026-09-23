@@ -1,0 +1,39 @@
+@page
+@model RecruitCatPhant2.Pages.JobTitles.CreateModel
+@{
+    ViewData["Title"] = "Create Job Title";
+}
+
+<h1>Create Job Title</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="JobTitle.Title"></label>
+        <input asp-for="JobTitle.Title" class="form-control" />
+        <span asp-validation-for="JobTitle.Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobTitle.Department"></label>
+        <input asp-for="JobTitle.Department" class="form-control" />
+        <span asp-validation-for="JobTitle.Department" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobTitle.EmploymentType"></label>
+        <input asp-for="JobTitle.EmploymentType" class="form-control" />
+        <span asp-validation-for="JobTitle.EmploymentType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobTitle.MinimumSalary"></label>
+        <input asp-for="JobTitle.MinimumSalary" class="form-control" />
+        <span asp-validation-for="JobTitle.MinimumSalary" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobTitle.MaximumSalary"></label>
+        <input asp-for="JobTitle.MaximumSalary" class="form-control" />
+        <span asp-validation-for="JobTitle.MaximumSalary" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

@@ -1,0 +1,30 @@
+@page "{id:int}"
+@model RecruitCatPhant2.Pages.Candidates.DetailsModel
+@{
+    ViewData["Title"] = "Candidate Details";
+}
+
+<h1>Candidate Details</h1>
+
+<dl class="row">
+    <dt class="col-sm-2">First Name</dt>
+    <dd class="col-sm-10">@Model.Candidate.FirstName</dd>
+
+    <dt class="col-sm-2">Last Name</dt>
+    <dd class="col-sm-10">@Model.Candidate.LastName</dd>
+
+    <dt class="col-sm-2">Email</dt>
+    <dd class="col-sm-10">@Model.Candidate.Email</dd>
+
+    <dt class="col-sm-2">Experience</dt>
+    <dd class="col-sm-10">@Model.Candidate.YearExperience</dd>
+
+    <dt class="col-sm-2">Target Salary</dt>
+    <dd class="col-sm-10">@Model.Candidate.TargetSalary</dd>
+
+    <dt class="col-sm-2">Start Date</dt>
+    <dd class="col-sm-10">@Model.Candidate.StartDate</dd>
+</dl>
+
+<a asp-page="Edit" asp-route-id="@Model.Candidate.Id" class="btn btn-primary">Edit</a>
+<a asp-page="Index" class="btn btn-secondary">Back to list</a>

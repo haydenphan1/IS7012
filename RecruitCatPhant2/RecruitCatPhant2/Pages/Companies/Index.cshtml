@@ -1,0 +1,41 @@
+@page
+@model RecruitCatPhant2.Pages.Companies.IndexModel
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<h1>Companies</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Website</th>
+            <th>Position</th>
+            <th>Location</th>
+            <th>Is Remote</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Company)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Website</td>
+            <td>@item.Position</td>
+            <td>@item.Location</td>
+            <td>@item.IsRemote</td>
+            <td>
+                <a class="btn btn-sm btn-secondary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-sm btn-danger" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
