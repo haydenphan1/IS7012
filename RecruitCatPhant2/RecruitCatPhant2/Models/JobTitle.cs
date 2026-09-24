@@ -7,11 +7,11 @@ namespace RecruitCatPhant2.Models
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(200)]
+        [StringLength(100)]
         public string? Title { get; set; }
-        [StringLength(200)]
+        [StringLength(100)]
         public string? Department { get; set; }
-        [StringLength(200)]
+        [StringLength(100)]
         public string? EmploymentType { get; set; }
         [Range(typeof(decimal), "0", "1000000")]
         public decimal? MinimumSalary { get; set; }
