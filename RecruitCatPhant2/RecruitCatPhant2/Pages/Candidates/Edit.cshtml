@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit Candidate";
 }
 
-<h1>Edit {Candidate.FirstName} {Candidate.LastName}</h1>
+<h1>Edit @Model.Candidate.FirstName @Model.Candidate.LastName</h1>
 
 <form method="post">
     <input type="hidden" asp-for="Candidate.Id" />
