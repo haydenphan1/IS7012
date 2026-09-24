@@ -4,7 +4,7 @@
     ViewData["Title"] = "Industries";
 }
 
-<h1>Industries</h1>
+<h1>All Industries</h1>
 
 <p>
     <a class="btn btn-primary" asp-page="Create">Create New</a>
@@ -14,6 +14,8 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Companies</th>
+            <th>Candidates</th>
             <th></th>
         </tr>
     </thead>
@@ -22,10 +24,12 @@
     {
         <tr>
             <td>@item.Name</td>
+            <td>@(item.Companies?.Count ?? 0)</td>
+            <td>@(item.Candidates?.Count ?? 0)</td>
             <td>
-                <a class="btn btn-sm btn-secondary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
-                <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@item.Id">Details</a>
-                <a class="btn btn-sm btn-danger" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-sm btn-info" asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-sm btn-info" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
     }

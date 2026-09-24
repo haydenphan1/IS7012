@@ -18,7 +18,10 @@ namespace RecruitCatPhant2.Pages.Industries
 
         public async Task OnGetAsync()
         {
-            Industry = await _context.Industry.ToListAsync();
+            Industry = await _context.Industry
+                .Include(i => i.Companies)
+                .Include(i => i.Candidates)
+                .ToListAsync();
         }
     }
 }

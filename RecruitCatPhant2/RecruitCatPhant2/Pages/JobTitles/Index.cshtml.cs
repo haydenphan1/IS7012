@@ -18,7 +18,9 @@ namespace RecruitCatPhant2.Pages.JobTitles
 
         public async Task OnGetAsync()
         {
-            JobTitle = await _context.JobTitle.ToListAsync();
+            JobTitle = await _context.JobTitle
+                .Include(j => j.Candidates)
+                .ToListAsync();
         }
     }
 }

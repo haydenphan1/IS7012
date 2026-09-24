@@ -4,7 +4,7 @@
     ViewData["Title"] = "Job Titles";
 }
 
-<h1>Job Titles</h1>
+<h1>All Job Titles</h1>
 
 <p>
     <a class="btn btn-primary" asp-page="Create">Create New</a>
@@ -16,8 +16,9 @@
             <th>Title</th>
             <th>Department</th>
             <th>Employment Type</th>
-            <th>Minimum Salary</th>
-            <th>Maximum Salary</th>
+            <th>Min Salary</th>
+            <th>Max Salary</th>
+            <th>Candidates</th>
             <th></th>
         </tr>
     </thead>
@@ -28,12 +29,13 @@
             <td>@item.Title</td>
             <td>@item.Department</td>
             <td>@item.EmploymentType</td>
-            <td>@item.MinimumSalary</td>
-            <td>@item.MaximumSalary</td>
+            <td>@(item.MinimumSalary?.ToString("C") ?? "")</td>
+            <td>@(item.MaximumSalary?.ToString("C") ?? "")</td>
+            <td>@(item.Candidates?.Count ?? 0)</td>
             <td>
-                <a class="btn btn-sm btn-secondary" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
-                <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@item.Id">Details</a>
-                <a class="btn btn-sm btn-danger" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-sm btn-info" asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-sm btn-info" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
     }

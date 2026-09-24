@@ -19,14 +19,16 @@ namespace RecruitCatPhant2.Pages.Candidates
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var candidate = await _context.Candidate.FirstOrDefaultAsync(m => m.Id == id);
-            if (candidate == null)
-                return NotFound();
+            Candidate = await _context.Candidate
+                .Include(c => c.Company)
+                .Include(c => c.JobTitle)
+                .Include(c => c.Industry)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            Candidate = candidate;
+            if (Candidate == null) return NotFound();
+
             return Page();
         }
     }

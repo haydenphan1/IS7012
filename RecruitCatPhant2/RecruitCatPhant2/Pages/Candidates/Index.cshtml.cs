@@ -14,11 +14,15 @@ namespace RecruitCatPhant2.Pages.Candidates
             _context = context;
         }
 
-        public IList<Candidate> Candidate { get; set; } = default!;
+        public IList<Candidate> Candidate { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Candidate = await _context.Candidate.ToListAsync();
+            Candidate = await _context.Candidate
+                .Include(c => c.Company)
+                .Include(c => c.JobTitle)
+                .Include(c => c.Industry)
+                .ToListAsync();
         }
     }
 }

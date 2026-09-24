@@ -4,21 +4,21 @@
     ViewData["Title"] = "Edit Industry";
 }
 
-<h1>Edit Industry</h1>
+<h1>Edit {Industry.Name}</h1>
 
 <form method="post">
     <input type="hidden" asp-for="Industry.Id" />
+
     <div class="form-group">
         <label asp-for="Industry.Name" class="control-label"></label>
         <input asp-for="Industry.Name" class="form-control" />
         <span asp-validation-for="Industry.Name" class="text-danger"></span>
     </div>
-    <div class="form-group mt-2">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a asp-page="Index" class="btn btn-secondary">Back to List</a>
-    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
 </form>
 
-@section Scripts{
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

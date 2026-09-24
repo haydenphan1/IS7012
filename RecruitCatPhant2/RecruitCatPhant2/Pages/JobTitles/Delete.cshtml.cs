@@ -20,21 +20,20 @@ namespace RecruitCatPhant2.Pages.JobTitles
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var jobTitle = await _context.JobTitle.FirstOrDefaultAsync(m => m.Id == id);
-            if (jobTitle == null)
-                return NotFound();
+            JobTitle = await _context.JobTitle
+                .Include(j => j.Candidates)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            JobTitle = jobTitle;
+            if (JobTitle == null) return NotFound();
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
             var jobTitle = await _context.JobTitle.FindAsync(id);
 

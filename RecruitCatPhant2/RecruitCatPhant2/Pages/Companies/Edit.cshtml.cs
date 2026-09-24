@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecruitCatPhant2.Data;
 using RecruitCatPhant2.Models;
@@ -20,21 +21,23 @@ namespace RecruitCatPhant2.Pages.Companies
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var company = await _context.Company.FindAsync(id);
-            if (company == null)
-                return NotFound();
+            Company = await _context.Company.FirstOrDefaultAsync(m => m.Id == id);
 
-            Company = company;
+            if (Company == null) return NotFound();
+
+            PopulateSelections();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+            {
+                PopulateSelections();
                 return Page();
+            }
 
             _context.Attach(Company).State = EntityState.Modified;
 
@@ -44,13 +47,27 @@ namespace RecruitCatPhant2.Pages.Companies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Company.Any(e => e.Id == Company.Id))
+                if (!CompanyExists(Company.Id))
+                {
                     return NotFound();
+                }
                 else
+                {
                     throw;
+                }
             }
 
             return RedirectToPage("Index");
+        }
+
+        private void PopulateSelections()
+        {
+            ViewData["IndustryId"] = new SelectList(_context.Industry, "Id", "Name");
+        }
+
+        private bool CompanyExists(int id)
+        {
+            return _context.Company.Any(e => e.Id == id);
         }
     }
 }

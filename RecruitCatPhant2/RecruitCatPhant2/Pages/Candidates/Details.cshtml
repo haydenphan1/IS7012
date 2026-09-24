@@ -1,30 +1,34 @@
-@page "{id:int}"
+@page
 @model RecruitCatPhant2.Pages.Candidates.DetailsModel
 @{
     ViewData["Title"] = "Candidate Details";
 }
 
-<h1>Candidate Details</h1>
+<h1>Candidate: {Candidate.FirstName} {Candidate.LastName}</h1>
 
-<dl class="row">
-    <dt class="col-sm-2">First Name</dt>
-    <dd class="col-sm-10">@Model.Candidate.FirstName</dd>
+<div>
+    <h4>Candidate</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">First Name</dt>
+        <dd class = "col-sm-10">@Model.Candidate.FirstName</dd>
 
-    <dt class="col-sm-2">Last Name</dt>
-    <dd class="col-sm-10">@Model.Candidate.LastName</dd>
+        <dt class = "col-sm-2">Last Name</dt>
+        <dd class = "col-sm-10">@Model.Candidate.LastName</dd>
 
-    <dt class="col-sm-2">Email</dt>
-    <dd class="col-sm-10">@Model.Candidate.Email</dd>
+        <dt class = "col-sm-2">Email</dt>
+        <dd class = "col-sm-10">@Model.Candidate.Email</dd>
 
-    <dt class="col-sm-2">Experience</dt>
-    <dd class="col-sm-10">@Model.Candidate.YearExperience</dd>
+        <dt class = "col-sm-2">Company</dt>
+        <dd class = "col-sm-10">@Model.Candidate.Company?.Name</dd>
 
-    <dt class="col-sm-2">Target Salary</dt>
-    <dd class="col-sm-10">@Model.Candidate.TargetSalary</dd>
+        <dt class = "col-sm-2">Job Title</dt>
+        <dd class = "col-sm-10">@Model.Candidate.JobTitle?.Title</dd>
 
-    <dt class="col-sm-2">Start Date</dt>
-    <dd class="col-sm-10">@Model.Candidate.StartDate</dd>
-</dl>
+        <dt class = "col-sm-2">Industry</dt>
+        <dd class = "col-sm-10">@Model.Candidate.Industry?.Name</dd>
+    </dl>
+</div>
 
 <a asp-page="Edit" asp-route-id="@Model.Candidate.Id" class="btn btn-primary">Edit</a>
-<a asp-page="Index" class="btn btn-secondary">Back to list</a>
+<a asp-page="Index" class="btn btn-secondary">Back to List</a>

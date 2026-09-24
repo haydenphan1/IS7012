@@ -20,21 +20,18 @@ namespace RecruitCatPhant2.Pages.JobTitles
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var jobTitle = await _context.JobTitle.FindAsync(id);
-            if (jobTitle == null)
-                return NotFound();
+            JobTitle = await _context.JobTitle.FindAsync(id);
 
-            JobTitle = jobTitle;
+            if (JobTitle == null) return NotFound();
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-                return Page();
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(JobTitle).State = EntityState.Modified;
 
@@ -44,13 +41,16 @@ namespace RecruitCatPhant2.Pages.JobTitles
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.JobTitle.Any(e => e.Id == JobTitle.Id))
-                    return NotFound();
-                else
-                    throw;
+                if (!JobTitleExists(JobTitle.Id)) return NotFound();
+                else throw;
             }
 
             return RedirectToPage("Index");
+        }
+
+        private bool JobTitleExists(int id)
+        {
+            return _context.JobTitle.Any(e => e.Id == id);
         }
     }
 }

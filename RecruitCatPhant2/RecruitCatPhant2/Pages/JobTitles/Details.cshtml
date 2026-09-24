@@ -4,28 +4,31 @@
     ViewData["Title"] = "Job Title Details";
 }
 
-<h1>Job Title Details</h1>
+<h1>Job Title: {JobTitle.Title}</h1>
 
 <div>
-    <h4>JobTitle</h4>
+    <h4>Job Title</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">Title</dt>
-        <dd class="col-sm-10">@Model.JobTitle.Title</dd>
+        <dt class = "col-sm-2">Title</dt>
+        <dd class = "col-sm-10">@Model.JobTitle.Title</dd>
 
-        <dt class="col-sm-2">Department</dt>
-        <dd class="col-sm-10">@Model.JobTitle.Department</dd>
+        <dt class = "col-sm-2">Department</dt>
+        <dd class = "col-sm-10">@Model.JobTitle.Department</dd>
 
-        <dt class="col-sm-2">Employment Type</dt>
-        <dd class="col-sm-10">@Model.JobTitle.EmploymentType</dd>
+        <dt class = "col-sm-2">Employment Type</dt>
+        <dd class = "col-sm-10">@Model.JobTitle.EmploymentType</dd>
 
-        <dt class="col-sm-2">Minimum Salary</dt>
-        <dd class="col-sm-10">@Model.JobTitle.MinimumSalary</dd>
+        <dt class = "col-sm-2">Min Salary</dt>
+        <dd class = "col-sm-10">@(Model.JobTitle.MinimumSalary?.ToString("C") ?? "")</dd>
 
-        <dt class="col-sm-2">Maximum Salary</dt>
-        <dd class="col-sm-10">@Model.JobTitle.MaximumSalary</dd>
+        <dt class = "col-sm-2">Max Salary</dt>
+        <dd class = "col-sm-10">@(Model.JobTitle.MaximumSalary?.ToString("C") ?? "")</dd>
+
+        <dt class = "col-sm-2">Candidates</dt>
+        <dd class = "col-sm-10">@(Model.JobTitle.Candidates?.Count ?? 0)</dd>
     </dl>
-</div>
 
-<a asp-page="Edit" asp-route-id="@Model.JobTitle.Id" class="btn btn-primary">Edit</a>
-<a asp-page="Index" class="btn btn-secondary">Back to List</a>
+    <a asp-page="Edit" asp-route-id="@Model.JobTitle.Id" class="btn btn-primary">Edit</a>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+</div>

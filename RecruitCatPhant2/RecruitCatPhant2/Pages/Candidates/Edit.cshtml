@@ -1,45 +1,53 @@
-@page "{id:int}"
+@page
 @model RecruitCatPhant2.Pages.Candidates.EditModel
 @{
     ViewData["Title"] = "Edit Candidate";
 }
 
-<h1>Edit Candidate</h1>
+<h1>Edit {Candidate.FirstName} {Candidate.LastName}</h1>
 
 <form method="post">
     <input type="hidden" asp-for="Candidate.Id" />
-    <div class="mb-3">
-        <label asp-for="Candidate.FirstName" class="form-label"></label>
+    <div class="form-group">
+        <label asp-for="Candidate.FirstName" class="control-label">First Name</label>
         <input asp-for="Candidate.FirstName" class="form-control" />
-        <span asp-validation-for="Candidate.FirstName" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Candidate.LastName" class="form-label"></label>
+    <div class="form-group">
+        <label asp-for="Candidate.LastName" class="control-label">Last Name</label>
         <input asp-for="Candidate.LastName" class="form-control" />
-        <span asp-validation-for="Candidate.LastName" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Candidate.Email" class="form-label"></label>
+    <div class="form-group">
+        <label asp-for="Candidate.Email" class="control-label">Email</label>
         <input asp-for="Candidate.Email" class="form-control" />
-        <span asp-validation-for="Candidate.Email" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Candidate.YearExperience" class="form-label"></label>
-        <input asp-for="Candidate.YearExperience" class="form-control" />
-        <span asp-validation-for="Candidate.YearExperience" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="Candidate.CompanyId" class="control-label">Company</label>
+        <select asp-for="Candidate.CompanyId" class="form-control" asp-items="ViewBag.CompanyId">
+            <option value="">-- Select Company --</option>
+        </select>
     </div>
-    <div class="mb-3">
-        <label asp-for="Candidate.TargetSalary" class="form-label"></label>
+    <div class="form-group">
+        <label asp-for="Candidate.JobTitleId" class="control-label">Job Title</label>
+        <select asp-for="Candidate.JobTitleId" class="form-control" asp-items="ViewBag.JobTitleId"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Candidate.IndustryId" class="control-label">Industry</label>
+        <select asp-for="Candidate.IndustryId" class="form-control" asp-items="ViewBag.IndustryId"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Candidate.TargetSalary" class="control-label">Target Salary</label>
         <input asp-for="Candidate.TargetSalary" class="form-control" />
-        <span asp-validation-for="Candidate.TargetSalary" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Candidate.StartDate" class="form-label"></label>
-        <input asp-for="Candidate.StartDate" class="form-control" />
-        <span asp-validation-for="Candidate.StartDate" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="Candidate.YearExperience" class="control-label">Years of Experience</label>
+        <input asp-for="Candidate.YearExperience" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Candidate.StartDate" class="control-label">Start Date</label>
+        <input asp-for="Candidate.StartDate" type="date" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-page="Index" class="btn btn-secondary">Back to list</a>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
 </form>
 
 @section Scripts {

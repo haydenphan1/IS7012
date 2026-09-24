@@ -30,11 +30,20 @@ namespace RecruitCatPhant2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IndustryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JobTitleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -50,6 +59,12 @@ namespace RecruitCatPhant2.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("IndustryId");
+
+                    b.HasIndex("JobTitleId");
+
                     b.ToTable("Candidate");
                 });
 
@@ -60,6 +75,9 @@ namespace RecruitCatPhant2.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("IndustryId")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("IsRemote")
                         .HasColumnType("bit");
@@ -86,6 +104,8 @@ namespace RecruitCatPhant2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IndustryId");
 
                     b.ToTable("Company");
                 });
@@ -132,6 +152,53 @@ namespace RecruitCatPhant2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("JobTitle");
+                });
+
+            modelBuilder.Entity("RecruitCatPhant2.Models.Candidate", b =>
+                {
+                    b.HasOne("RecruitCatPhant2.Models.Company", "Company")
+                        .WithMany("Candidates")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("RecruitCatPhant2.Models.Industry", "Industry")
+                        .WithMany("Candidates")
+                        .HasForeignKey("IndustryId");
+
+                    b.HasOne("RecruitCatPhant2.Models.JobTitle", "JobTitle")
+                        .WithMany("Candidates")
+                        .HasForeignKey("JobTitleId");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Industry");
+
+                    b.Navigation("JobTitle");
+                });
+
+            modelBuilder.Entity("RecruitCatPhant2.Models.Company", b =>
+                {
+                    b.HasOne("RecruitCatPhant2.Models.Industry", "Industry")
+                        .WithMany("Companies")
+                        .HasForeignKey("IndustryId");
+
+                    b.Navigation("Industry");
+                });
+
+            modelBuilder.Entity("RecruitCatPhant2.Models.Company", b =>
+                {
+                    b.Navigation("Candidates");
+                });
+
+            modelBuilder.Entity("RecruitCatPhant2.Models.Industry", b =>
+                {
+                    b.Navigation("Candidates");
+
+                    b.Navigation("Companies");
+                });
+
+            modelBuilder.Entity("RecruitCatPhant2.Models.JobTitle", b =>
+                {
+                    b.Navigation("Candidates");
                 });
 #pragma warning restore 612, 618
         }

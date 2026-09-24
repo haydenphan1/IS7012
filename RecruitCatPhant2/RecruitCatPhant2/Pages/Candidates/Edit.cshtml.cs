@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecruitCatPhant2.Data;
 using RecruitCatPhant2.Models;
@@ -20,21 +21,23 @@ namespace RecruitCatPhant2.Pages.Candidates
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var candidate = await _context.Candidate.FindAsync(id);
-            if (candidate == null)
-                return NotFound();
+            Candidate = await _context.Candidate.FindAsync(id);
 
-            Candidate = candidate;
+            if (Candidate == null) return NotFound();
+
+            PopulateSelections();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+            {
+                PopulateSelections();
                 return Page();
+            }
 
             _context.Attach(Candidate).State = EntityState.Modified;
 
@@ -45,12 +48,23 @@ namespace RecruitCatPhant2.Pages.Candidates
             catch (DbUpdateConcurrencyException)
             {
                 if (!_context.Candidate.Any(e => e.Id == Candidate.Id))
+                {
                     return NotFound();
+                }
                 else
+                {
                     throw;
+                }
             }
 
             return RedirectToPage("Index");
+        }
+
+        private void PopulateSelections()
+        {
+            ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Name", Candidate.CompanyId);
+            ViewData["JobTitleId"] = new SelectList(_context.JobTitle, "Id", "Title", Candidate.JobTitleId);
+            ViewData["IndustryId"] = new SelectList(_context.Industry, "Id", "Name", Candidate.IndustryId);
         }
     }
 }

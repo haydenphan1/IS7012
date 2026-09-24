@@ -4,19 +4,19 @@
     ViewData["Title"] = "Delete Industry";
 }
 
-<h1>Delete Industry</h1>
+<h1>Delete - {Industry.Name}</h1>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Industry</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            Name
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Industry.Name
-        </dd>
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Industry.Name</dd>
+        <dt class="col-sm-2">Companies</dt>
+        <dd class="col-sm-10">@Model.Industry.Companies?.Count</dd>
+        <dt class="col-sm-2">Candidates</dt>
+        <dd class="col-sm-10">@Model.Industry.Candidates?.Count</dd>
     </dl>
 
     <form method="post">

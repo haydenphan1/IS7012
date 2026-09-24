@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RecruitCatPhant2.Data;
 using RecruitCatPhant2.Models;
 
@@ -14,18 +15,20 @@ namespace RecruitCatPhant2.Pages.Candidates
             _context = context;
         }
 
-        [BindProperty]
-        public Candidate Candidate { get; set; } = default!;
-
         public IActionResult OnGet()
         {
+            PopulateSelections();
             return Page();
         }
+
+        [BindProperty]
+        public Candidate Candidate { get; set; } = default!;
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                PopulateSelections();
                 return Page();
             }
 
@@ -33,6 +36,13 @@ namespace RecruitCatPhant2.Pages.Candidates
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");
+        }
+
+        private void PopulateSelections()
+        {
+            ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Name");
+            ViewData["JobTitleId"] = new SelectList(_context.JobTitle, "Id", "Title");
+            ViewData["IndustryId"] = new SelectList(_context.Industry, "Id", "Name");
         }
     }
 }

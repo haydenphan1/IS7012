@@ -20,21 +20,18 @@ namespace RecruitCatPhant2.Pages.Industries
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-                return NotFound();
+            if (id == null) return NotFound();
 
-            var industry = await _context.Industry.FindAsync(id);
-            if (industry == null)
-                return NotFound();
+            Industry = await _context.Industry.FindAsync(id);
 
-            Industry = industry;
+            if (Industry == null) return NotFound();
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-                return Page();
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(Industry).State = EntityState.Modified;
 
@@ -44,13 +41,16 @@ namespace RecruitCatPhant2.Pages.Industries
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Industry.Any(e => e.Id == Industry.Id))
-                    return NotFound();
-                else
-                    throw;
+                if (!IndustryExists(Industry.Id)) return NotFound();
+                else throw;
             }
 
             return RedirectToPage("Index");
+        }
+
+        private bool IndustryExists(int id)
+        {
+            return _context.Industry.Any(e => e.Id == id);
         }
     }
 }

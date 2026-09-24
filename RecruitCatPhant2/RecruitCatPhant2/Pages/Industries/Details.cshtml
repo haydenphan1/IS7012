@@ -4,19 +4,20 @@
     ViewData["Title"] = "Industry Details";
 }
 
-<h1>Industry Details</h1>
+<h1>Industry: {Industry.Name}</h1>
 
 <div>
     <h4>Industry</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            Name
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Industry.Name
-        </dd>
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Industry.Name</dd>
+        <dt class="col-sm-2">Companies</dt>
+        <dd class="col-sm-10">@Model.Industry.Companies?.Count</dd>
+        <dt class="col-sm-2">Candidates</dt>
+        <dd class="col-sm-10">@Model.Industry.Candidates?.Count</dd>
     </dl>
+
     <a asp-page="Edit" asp-route-id="@Model.Industry.Id" class="btn btn-primary">Edit</a>
     <a asp-page="Index" class="btn btn-secondary">Back to List</a>
 </div>
